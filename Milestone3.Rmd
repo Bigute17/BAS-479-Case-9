@@ -128,6 +128,19 @@ FinalAge <- c()
 for(i in 1:length(SAMPLE$Age)){
   if(is.na(SAMPLE$Age[i])){ FinalAge[i] <- Age #add in here}
   else{FinalAge[i] <- SAMPLE$Age[i]}
-}
+  }
+
+install.packages("missForest")  
+library(missForest) 
+
+SAMPLE.MISSFORESTTEST <- data.frame(SAMPLE2.1$Age,SAMPLE2.1$Age1,SAMPLE2.1$Age2,SAMPLE2.1$Age3)
+
+SAMPLE.MISSFOREST <- missForest(SAMPLE.MISSFORESTTEST)
+FinalAge1 <- SAMPLE.MISSFOREST$ximp
+
+Sample2.2 <- cbind(SAMPLE2.1, FinalAge1)  
+
+FinalAge <- Sample2.2$SAMPLE2.1.Age
+
 ```
 
